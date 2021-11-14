@@ -27,7 +27,6 @@ class Main extends Component {
           <div className="card-body">
 
             <form className="mb-3" onSubmit={(event) => {
-                event.preventDefault()
                 let amount
                 amount = this.input.value.toString()
                 amount = window.web3.utils.toWei(amount, 'Ether')
@@ -64,9 +63,13 @@ class Main extends Component {
               }}>
                 UN-STAKE...
               </button>
+              
           </div>
         </div>
-
+        <div className="custom-btn">
+        <a href="/pay"><button className="btn btn-primary ">Send Money</button></a>   
+        </div>
+         
       </div>
     );
   }

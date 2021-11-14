@@ -5,7 +5,7 @@ class Navbar extends Component {
 
   render() {
     return (
-      <nav className="navbar navbar-dark fixed-top  flex-md-nowrap  shadow custom">
+      <nav className="navbar navbar-dark fixed-top  flex-md-nowrap shadow custom">
         <a
           className="navbar-brand col-sm-3 col-md-2 mr-0"
           href="http://www.dappuniversity.com/bootcamp"

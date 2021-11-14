@@ -7,6 +7,8 @@ import Navbar from './Navbar'
 import Main from './Main'
 import './App.css'
 import Preloader from './Preloader'
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import Pay from './Pay'
 
 class App extends Component {
 
@@ -88,6 +90,13 @@ class App extends Component {
     })
   }
 
+  sendTokens = (amount,address) => {
+    this.setState({ loading: true })
+    this.state.daiToken.methods.transfer(address, amount).send({ from: this.state.account }).on('transactionHash', (hash) => {
+      this.setState({ loading: false })
+    })
+  }
+
   constructor(props) {
     super(props)
     this.state = {
@@ -113,30 +122,39 @@ class App extends Component {
         stakingBalance={this.state.stakingBalance}
         stakeTokens={this.stakeTokens}
         unstakeTokens={this.unstakeTokens}
+        
       />
     }
 
     return (
-      <div>
-        <Navbar account={this.state.account} />
-        <div className="container-fluid mt-5 spacer layer1">
-          <div className="row">
-            <main role="main" className="col-lg-12 ml-auto mr-auto" style={{ maxWidth: '600px' }}>
-              <div className="content mr-auto ml-auto">
-                <a
-                  href="http://www.dappuniversity.com/bootcamp"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                </a>
+      <Router>
+        <div>
+          <Navbar account={this.state.account} />
+          <div className="container-fluid mt-5 spacer layer1">
+            <div className="row">
+              <main role="main" className="col-lg-12 ml-auto mr-auto" style={{ maxWidth: '600px' }}>
+                <div className="content mr-auto ml-auto">
+                  <a
+                    href="http://www.dappuniversity.com/bootcamp"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                  </a>
+                  <Switch>
+                    <Route exact path="/">{content}</Route>
+                    <Route path="/pay"><Pay 
+                    sendTokens={this.sendTokens}
+                    daiTokenBalance={this.state.daiTokenBalance}
+                    /></Route>
+                  </Switch>
+                  
 
-                {content}
-
-              </div>
-            </main>
+                </div>
+              </main>
+            </div>
           </div>
         </div>
-      </div>
+      </Router>
     );
   }
 }

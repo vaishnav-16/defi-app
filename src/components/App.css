@@ -37,3 +37,39 @@
 .custom-color{
     color: #c0c0c0;
 }
+
+.paytab{
+    margin-top: 100px;
+}
+
+.n{
+    margin-left: 700px;
+    margin-right: 50px;
+    padding-top: 10px;
+    text-decoration: none;
+    
+}
+
+.n::hover{
+    color: #c0c0c0;
+    text-decoration: none;
+}
+
+.l{
+    color: white;
+}
+
+.custom-btn{
+    margin-left:220px ;
+    align-items: center;
+}
+
+.custom-span{
+    margin-bottom:20px;
+    color: black;
+}
+
+.b{
+    color: black;
+    margin-bottom: 5px;
+}
