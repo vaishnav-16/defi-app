@@ -6,7 +6,7 @@ class Preloader extends Component{
     render(){
         return(
             <div className="MyDiv">
-            <ReactLoading type={"bars"} color={"#03fc4e"} height={200} width={200}></ReactLoading>
+            <ReactLoading type={"bars"} color={"#03fc4e"} height={100} width={100}></ReactLoading>
             </div>
         )
     }

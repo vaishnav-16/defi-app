@@ -1,5 +1,5 @@
 pragma experimental ABIEncoderV2;
-// pragma solidity ^0.5.0;
+pragma solidity ^0.5.0;
 
 import {DaiToken} from "./DaiToken.sol";
 
@@ -31,7 +31,7 @@ contract BasicLoan {
     address payable public borrower;
     address public daiAddress;
 
-    constructor(Terms memory _terms, address _daiAddress) {
+    constructor(Terms memory _terms, address _daiAddress) public {
         terms = _terms;
         daiAddress = _daiAddress;
         lender = msg.sender;
