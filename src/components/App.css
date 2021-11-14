@@ -1,0 +1,39 @@
+/* Styles go here */
+.spacer{
+    aspect-ratio: 960/540;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.layer1{
+    background-image: url('../wave-haikei.svg');
+}
+
+.custom{
+    background-color: #002233;
+}
+
+.custom-div{
+    margin-top: 0;
+}
+
+.navbar {
+    margin-bottom: 0px;
+    border: 0;
+}
+
+.cusbg{
+    background-color: #002233;
+}
+
+.MyDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.custom-color{
+    color: #c0c0c0;
+}
