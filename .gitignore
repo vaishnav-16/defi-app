@@ -1,24 +1,48 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
-/node_modules
-/.pnp
-.pnp.js
+node_modules/
+.pnp/
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
 
-# testing
-/coverage
+# build outputs
+dist/
+build/
+out/
 
-# production
-/build
+# hardhat
+contracts/cache/
+contracts/artifacts/
+contracts/typechain-types/
+contracts/coverage/
+contracts/coverage.json
+contracts/deployments/localhost.json
+contracts/deployments/hardhat.json
 
-# misc
-.DS_Store
+# vite
+frontend/.vite/
+
+# env
 .env
 .env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env.*.local
 
+# logs
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
+
+# compound engineering
+.compound-engineering/*.local.yaml
+
+# editor
+.vscode/
+.idea/
+*.swp
+.DS_Store
+bundles/

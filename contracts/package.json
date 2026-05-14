@@ -1,0 +1,35 @@
+{
+  "name": "@defi-app/contracts",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Smart contracts: mock DAI, DApp reward token, TokenFarm staking, LoanBook P2P lending",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "test:coverage": "hardhat coverage",
+    "node": "hardhat node",
+    "deploy:local": "hardhat run scripts/deploy.ts --network localhost",
+    "deploy:sepolia": "hardhat run scripts/deploy.ts --network sepolia",
+    "clean": "hardhat clean",
+    "typechain": "hardhat typechain"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@nomicfoundation/hardhat-ignition-ethers": "^0.15.0",
+    "@openzeppelin/contracts": "^5.0.2",
+    "@typechain/ethers-v6": "^0.5.1",
+    "@typechain/hardhat": "^9.1.0",
+    "@types/chai": "^4.3.16",
+    "@types/mocha": "^10.0.7",
+    "@types/node": "^20.14.0",
+    "chai": "^4.4.1",
+    "dotenv": "^16.4.5",
+    "ethers": "^6.13.0",
+    "hardhat": "^2.22.5",
+    "hardhat-gas-reporter": "^2.2.0",
+    "solidity-coverage": "^0.8.12",
+    "ts-node": "^10.9.2",
+    "typechain": "^8.3.2",
+    "typescript": "^5.4.5"
+  }
+}
