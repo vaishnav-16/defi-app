@@ -36,9 +36,9 @@ export default function Landing() {
           </h1>
 
           <p className="font-display text-[22px] md:text-[24px] leading-[1.4] text-ink-700 max-w-[36rem] mb-16 animate-rise-in [animation-delay:240ms]">
-            A rebuild of a 2021 blockchain-course project. The original was a functional
-            dApp that almost nobody could try — six install steps before the first click.
-            This version reduces that to one.
+            A rebuild of a 2021 blockchain-course project. The original was a working
+            dApp that almost nobody could try: six setup steps before the first click.
+            This version gets that down to one.
           </p>
 
           <div className="flex flex-wrap items-center gap-8 mb-6 animate-rise-in [animation-delay:360ms]">
@@ -66,7 +66,7 @@ export default function Landing() {
           <article>
             <p className="kicker mb-6">The v1</p>
             <h3 className="font-display font-medium text-[26px] leading-[1.2] tracking-[-0.012em] text-balance max-w-[18ch] mb-5">
-              A course project that worked — for graders.
+              A course project that worked, for graders.
             </h3>
             <p className="text-ink-500 text-base leading-[1.65] max-w-[32ch]">
               Solidity, React, Truffle. Token staking, ERC-20 transfers, over-collateralized
@@ -77,11 +77,11 @@ export default function Landing() {
           <article>
             <p className="kicker mb-6">The problem</p>
             <h3 className="font-display font-medium text-[26px] leading-[1.2] tracking-[-0.012em] text-balance max-w-[18ch] mb-5">
-              Every step before first interaction costs 60% of visitors.
+              Six steps before the first click.
             </h3>
             <p className="text-ink-500 text-base leading-[1.65] max-w-[32ch]">
-              Install MetaMask. Find a faucet. Decipher jargon. Wait for blocks. By the time
-              most people stake their first token, they have already left.
+              Install MetaMask. Run a local Ganache chain. Run truffle migrate. Import a test
+              account. Then decipher the jargon. Most people leave long before their first stake.
             </p>
           </article>
           <article>
@@ -90,7 +90,7 @@ export default function Landing() {
               An in-browser simulation of the real contract logic.
             </h3>
             <p className="text-ink-500 text-base leading-[1.65] max-w-[32ch]">
-              Same staking math, same lending state machine — running entirely client-side,
+              Same staking math, same lending state machine, running entirely client-side
               with an accelerated chain clock so rewards tick visibly. The real Sepolia
               version is one click away.
             </p>
@@ -103,13 +103,13 @@ export default function Landing() {
         <p className="kicker mb-14">By the numbers · v1 → v2</p>
         <div className="grid grid-cols-2 md:grid-cols-4 border-t border-paper-rule">
           <Stat n="01" label="Steps to stake" before="6" after="1" note="v1 → v2"
-                footnote="From cold-start landing to first staking transaction confirmed. v1 required MetaMask, a faucet, and a network switch." />
+                footnote="From cold-start landing to first staking transaction confirmed. v1 required MetaMask, a local Ganache chain, truffle migrate and an imported test account." />
           <Stat n="02" label="Stack migration" before="0.5" after="0.8" note="Solidity version"
-                footnote="Custom errors replace require-strings; safer arithmetic by default; immutables for gas." />
+                footnote="Custom errors replace require-strings, arithmetic is checked by default, and immutables save gas." />
           <Stat n="03" label="Reward model" before="Manual" after="Continuous" note="Time-weighted accrual" text
-                footnote="Per-block claim becomes per-second accrual. Rewards advance visibly while anything is staked." />
-          <Stat n="04" label="Test coverage" before="1" after="40+" note="Unit tests added"
-                footnote="Hardhat plus vitest. Covers staking math, lending state machine, deadline boundaries." />
+                footnote="v1 paid rewards only when the owner ran a payout script that looped over every staker. Now rewards accrue every second, with no loop." />
+          <Stat n="04" label="Test coverage" before="5" after="52" note="Automated tests"
+                footnote="35 Solidity tests in Hardhat plus 17 simulation tests in vitest. Covers staking math, the lending state machine and deadline boundaries." />
         </div>
       </section>
 
@@ -118,7 +118,7 @@ export default function Landing() {
         <div className="max-w-[880px]">
           <p className="kicker mb-6">Try it</p>
           <h2 className="font-display font-medium text-[clamp(40px,5.6vw,84px)] leading-none tracking-[-0.024em] text-balance mb-9">
-            Ninety seconds. <span className="italic text-ochre-deep">Zero setup.</span>
+            One click. <span className="italic text-ochre-deep">Zero setup.</span>
           </h2>
           <p className="font-display text-[20px] leading-[1.5] text-ink-500 max-w-[36rem] mb-12">
             You'll land with 1,000&nbsp;mDAI and two pending loan offers. Stake, watch rewards

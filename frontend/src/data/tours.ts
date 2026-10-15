@@ -29,7 +29,7 @@ export const stakingTour: TourStep[] = [
     id: "wallet-balance",
     target: '[data-tour="wallet-balance"]',
     title: "You have 1,000 mDAI to play with",
-    body: "Treat it like Monopoly money. Nothing here touches a real wallet — the entire experience runs in your browser.",
+    body: "Treat it like Monopoly money. Nothing here touches a real wallet. The entire experience runs in your browser.",
     completedWhen: () => true, // advances on Next click
     requiresRoute: "/app",
   },
@@ -54,7 +54,7 @@ export const stakingTour: TourStep[] = [
     id: "claim-action",
     target: '[data-tour="claim-action"]',
     title: "Claim whenever you want",
-    body: "Claiming moves earned DAPP into your wallet. The pull pattern means you decide when — rewards never expire.",
+    body: "Claiming moves earned DAPP into your wallet. The pull pattern means you decide when. Rewards never expire.",
     completedWhen: (state) =>
       (state.dappBalances[DEMO_ADDRESSES.user] ?? 0n) > 0n,
     requiresRoute: "/app",

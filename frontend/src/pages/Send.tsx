@@ -37,7 +37,7 @@ export default function Send() {
           Transfer mDAI to another address.
         </h1>
         <p className="mt-3 text-ink-300 max-w-xl">
-          Standard ERC-20 transfer. In demo mode, you can send to any valid address — it won't
+          Standard ERC-20 transfer. In demo mode, you can send to any valid address and it won't
           crash the state. On Sepolia, make sure the recipient exists.
         </p>
       </header>

@@ -78,7 +78,7 @@ function describeEvent(e: DemoEvent): { kicker: string; body: string; note?: str
     case "Unstaked":
       return {
         kicker: "Unstaked",
-        body: `${formatAmount(e.amount)} mDAI returned to your wallet. Your earned rewards are preserved — you can claim them whenever you want.`,
+        body: `${formatAmount(e.amount)} mDAI returned to your wallet. Your earned rewards are kept, and you can claim them whenever you want.`,
       };
     case "RewardClaimed":
       return {

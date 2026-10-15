@@ -19,19 +19,19 @@ export const glossary: Record<string, string> = {
   liquidation:
     "When a borrower misses the deadline, the lender takes the collateral. The loan ends.",
   apy:
-    "Annualized percentage yield — the return on a stake if conditions stayed constant for a year.",
+    "Annualized percentage yield: the return on a stake if conditions stayed constant for a year.",
   erc20:
     "The Ethereum standard for fungible tokens. Anything that follows it can be sent, approved, and held by any wallet.",
-  gas: "The fee paid to the network to execute a transaction. Demo mode has no gas; Sepolia mode does.",
+  gas: "The fee paid to the network to execute a transaction. Demo mode has no gas. Sepolia mode does.",
   allowance:
     "Permission you grant a contract to move a specific amount of your tokens. Required once before each new spend limit.",
   contract:
-    "A program deployed to the blockchain. Calls and state are public; you don't need to trust the developer, only verify the code.",
+    "A program deployed to the blockchain. Calls and state are public, so you don't need to trust the developer. You only need to verify the code.",
   approval:
     "The transaction that grants an allowance. You sign it once, and the contract can then move tokens up to the approved amount.",
   wallet: "Software that holds your private key and signs transactions on your behalf.",
   dapp:
-    "Decentralized application — a frontend that talks directly to smart contracts instead of a backend server.",
+    "Decentralized application: a frontend that talks directly to smart contracts instead of a backend server.",
   rewardrate:
     "How fast a staking contract pays out rewards, expressed as wei per second across the whole pool.",
 };

@@ -33,7 +33,7 @@ export const hero: Section = {
   blocks: [
     {
       kind: "prose",
-      text: "A PM's rebuild of a 2021 blockchain-course project — turning an internal demo into something a first-time visitor can actually understand and use in under ninety seconds.",
+      text: "A PM's rebuild of a 2021 blockchain-course project. The goal: turn a demo only its builders could run into something a first-time visitor can understand and use without installing anything.",
     },
   ],
 };
@@ -45,7 +45,7 @@ export const problem: Section = {
   blocks: [
     {
       kind: "prose",
-      text: "The v1 was a functional token-farming and lending dApp built for an IT465 course at NITK Surathkal. The Solidity was correct, the React frontend worked, the tests passed. But the path from 'I want to see this' to 'I have interacted with it' looked like this:",
+      text: "The v1 was a working token-farming, payments and lending dApp that three of us built for IT465 Blockchain Technologies at NITK Surathkal in 2021 (I wrote the loan contract). The Solidity was correct, the React frontend worked, the tests passed. But the path from 'I want to see this' to 'I have interacted with it' looked like this:",
     },
     {
       kind: "list",
@@ -56,12 +56,12 @@ export const problem: Section = {
         "Clone the repo, run `npm install`, run `truffle migrate`.",
         "Import a Ganache test account into MetaMask.",
         "Start the React dev server.",
-        "Finally stake tokens — with rewards that only distribute when the project owner manually runs a script.",
+        "Finally stake tokens, with rewards that only arrive when the project owner manually runs a script.",
       ],
     },
     {
       kind: "prose",
-      text: "For a blockchain course, that was fine. For anything that wanted an audience — hiring managers, potential users, collaborators — the funnel dropped to zero at step one.",
+      text: "For a blockchain course, that was fine. For anything that wanted an audience (hiring managers, potential users, collaborators), the funnel dropped to zero at step one.",
     },
     {
       kind: "pull",
@@ -70,41 +70,22 @@ export const problem: Section = {
   ],
 };
 
-export const research: Section = {
-  slug: "research",
-  kicker: "Research",
-  title: "Five minutes of user research that changed the whole brief.",
+export const diagnosis: Section = {
+  slug: "whats-wrong",
+  kicker: "Diagnosis",
+  title: "What was wrong with v1.",
   blocks: [
     {
       kind: "prose",
-      text: "Before rebuilding, I walked five non-technical friends through the original v1 screen-by-screen using video recording and asked them to think aloud. Three finance-adjacent professionals, two with no crypto exposure. None made it past the wallet screen without help. More revealing were the verbatims:",
-    },
-    {
-      kind: "pull",
-      text: "\u201cWhat does ‘stake' mean? Is this gambling?\u201d",
-      attribution: "— marketing manager, no crypto exposure",
-    },
-    {
-      kind: "pull",
-      text: "\u201cI clicked the button and nothing happened. Did I break it?\u201d",
-      attribution: "— watching a real Ethereum transaction take 15 seconds",
-    },
-    {
-      kind: "pull",
-      text: "\u201cHow do I know my tokens are actually earning anything? The number didn't move.\u201d",
-      attribution: "— the rewards were only distributed when the admin ran a script",
-    },
-    {
-      kind: "prose",
-      text: "Three problems, ranked by how many people hit them:",
+      text: "Going back through v1 as someone who had never seen it, three problems stood out. This is my read of the old app, not a user study.",
     },
     {
       kind: "list",
       ordered: true,
       items: [
-        "Friction to first interaction. Wallet install, test tokens, gas — all before seeing anything.",
-        "Vocabulary gap. Stake, collateral, liquidation, gas, approval — all undefined for non-DeFi users.",
-        "Invisible feedback. Actions succeeded but nothing on screen acknowledged them; rewards accumulated silently.",
+        "Friction to first interaction. Wallet install, a local chain, test tokens and gas, all before seeing anything.",
+        "Vocabulary gap. Stake, collateral, liquidation, gas and approval are never explained to someone new to DeFi.",
+        "Invisible feedback. Actions succeeded but nothing on screen acknowledged them, and rewards only showed up when the owner ran a payout script.",
       ],
     },
   ],
@@ -118,7 +99,7 @@ export const decisions: Section = {
     { kind: "heading", level: 2, text: "1. Default to a demo, not to a wallet." },
     {
       kind: "prose",
-      text: "The homepage doesn't ask for a wallet. It offers a guided demo backed by a client-side simulation of the exact same contract math. One click — no install, no funding, no gas. The 'Connect wallet' path still exists for anyone who wants to verify on-chain, but it's opt-in, not a gatekeeper.",
+      text: "The homepage doesn't ask for a wallet. It offers a guided demo backed by a client-side simulation of the exact same contract math. One click: no install, no funding, no gas. The 'Connect wallet' path still exists for anyone who wants to verify on-chain. It is opt-in, and it never stands in the way.",
     },
     {
       kind: "tradeoff",
@@ -132,21 +113,21 @@ export const decisions: Section = {
     { kind: "heading", level: 2, text: "2. Compress time, don't fake it." },
     {
       kind: "prose",
-      text: "Rewards accrue continuously per-second — same math as the real contract. But in demo mode, the 'chain clock' runs 60× wall time, so the reward counter ticks visibly. The user sees the mechanism, just sped up. Tooltips explain what's happening: \u201cIn the real contract, 1 second here = 1 minute on-chain.\u201d",
+      text: "Rewards accrue continuously, every second, with the same math as the real contract. But in demo mode, the 'chain clock' runs 60× wall time, so the reward counter ticks visibly. The user sees the mechanism, just sped up. Tooltips explain what's happening: \u201cIn the real contract, 1 second here = 1 minute on-chain.\u201d",
     },
     {
       kind: "tradeoff",
       chose: "60× accelerated chain clock",
       over: "Fake rewards that increment on a timer",
       because:
-        "The math is real. When a user later inspects the contract source or connects to Sepolia, the numbers add up — the demo was a scaled version, not a lie.",
+        "The math is real. When a user later inspects the contract source or connects to Sepolia, the numbers add up. The demo was a sped-up version of the real thing.",
     },
     { kind: "spacer" },
 
     { kind: "heading", level: 2, text: "3. Explain during the action, not after." },
     {
       kind: "prose",
-      text: "Instead of an upfront tutorial, every interactive surface carries inline explanations. Stake input: \u201cYou're depositing mDAI into the farm contract.\u201d Post-transaction: \u201cWhat just happened?\u201d panel with a mini token-flow diagram. Underlined terms open a glossary on hover. Users who already know DeFi ignore all of it; newcomers have exactly the context they need exactly when they need it.",
+      text: "Instead of an upfront tutorial, every interactive surface carries inline explanations. Stake input: \u201cYou're depositing mDAI into the farm contract.\u201d Post-transaction: \u201cWhat just happened?\u201d panel with a mini token-flow diagram. Underlined terms open a glossary on hover. Users who already know DeFi ignore all of it. Newcomers get exactly the context they need, right when they need it.",
     },
     {
       kind: "tradeoff",
@@ -161,11 +142,11 @@ export const decisions: Section = {
 export const metrics: Section = {
   slug: "metrics",
   kicker: "Success",
-  title: "How I'd measure if this worked.",
+  title: "How I would measure if this worked.",
   blocks: [
     {
       kind: "prose",
-      text: "If this were a real product with analytics, these are the metrics I'd instrument and watch. Numbers below are targets I'd set before launch, not claims.",
+      text: "If this were a real product with analytics, these are the metrics I would instrument and watch. The numbers below are targets I would set before launch. None of them are results.",
     },
     {
       kind: "metric",
@@ -189,7 +170,7 @@ export const metrics: Section = {
       kind: "metric",
       label: "Glossary open rate",
       value: "Diagnostic",
-      context: "Not a target — a signal. If > 30% of users open any given term, it needs to be explained inline, not behind a hover.",
+      context: "A signal to watch, with no target. If more than 30% of users open a given term, it needs to be explained inline instead of behind a hover.",
     },
   ],
 };
@@ -197,14 +178,14 @@ export const metrics: Section = {
 export const roadmap: Section = {
   slug: "roadmap",
   kicker: "Roadmap",
-  title: "What I'd ship next, and what I'd explicitly leave out.",
+  title: "What I would ship next, and what I would leave out on purpose.",
   blocks: [
     { kind: "heading", level: 2, text: "Shipping next" },
     {
       kind: "list",
       items: [
         "A Chainlink price oracle on the LoanBook so collateral ratios are enforced dynamically, not fixed at loan creation.",
-        "A subgraph to power a 'historical yield' chart — showing actual reward accrual across real users, not the synthetic single-user demo.",
+        "A subgraph to power a 'historical yield' chart, showing actual reward accrual across real users instead of the single-user demo.",
         "Gasless 'sign-in with Ethereum' so the Sepolia path doesn't require users to source testnet ETH.",
       ],
     },
@@ -214,16 +195,16 @@ export const roadmap: Section = {
       items: [
         "Multi-chain support. Ethereum + testnet is enough for the case study. Bridging is someone else's product.",
         "Governance tokens and on-chain voting. Nice demo, wrong project.",
-        "A mobile app. Web covers the audience; a wrapper adds scope without adding audience.",
+        "A mobile app. Web covers the audience, and a wrapper adds scope without adding audience.",
       ],
     },
     {
       kind: "pull",
-      text: "Saying no to features is the PM move I reach for most often. Everything I didn't ship here is a small note — what it was, why I cut it, what would bring it back.",
+      text: "Saying no to features is the PM move I reach for most often. Everything I didn't ship here is a small note: what it was, why I cut it, what would bring it back.",
     },
   ],
 };
 
 // ──────────────────────────────────────────────────────────────────────────────
 
-export const sections: Section[] = [hero, problem, research, decisions, metrics, roadmap];
+export const sections: Section[] = [hero, problem, diagnosis, decisions, metrics, roadmap];

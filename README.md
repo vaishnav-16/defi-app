@@ -1,4 +1,4 @@
-# DeFi App v3 — Portfolio Edition
+# DeFi App v3: Portfolio Edition
 
 A PM portfolio case study on product-led design for decentralized finance. A from-scratch rebuild of a 2021 blockchain-course project ([v1 repo](https://github.com/vaishnav-16/defi-app)), rethought for the audience it never had: people who don't already own crypto.
 
@@ -10,9 +10,9 @@ A PM portfolio case study on product-led design for decentralized finance. A fro
 
 Three things braided together:
 
-1. **A working DeFi app** — Solidity contracts (staking farm with Synthetix-style continuous rewards, P2P over-collateralized lending) deployed to Sepolia.
-2. **A client-side simulation of those contracts** — so any first-time visitor can try the full flow without installing a wallet or finding test ETH.
-3. **A PM case study** — the decisions, tradeoffs, and metrics framed as a portfolio narrative.
+1. **A working DeFi app.** Solidity contracts (staking farm with Synthetix-style continuous rewards, P2P over-collateralized lending), ready to deploy to Sepolia.
+2. **A client-side simulation of those contracts**, so any first-time visitor can try the full flow without installing a wallet or finding test ETH.
+3. **A PM case study:** the decisions, tradeoffs, and metrics framed as a portfolio narrative.
 
 It's one codebase that serves two audiences (recruiters and engineers) at the same time. See `ARCHITECTURE.md` for how that works.
 
@@ -58,7 +58,7 @@ defi-app-v2/
 
 ```bash
 npm install
-npm run dev           # frontend on :3000 — demo mode works instantly
+npm run dev           # frontend on :3000, demo mode works instantly
 
 # For Sepolia / on-chain testing:
 npm run node          # terminal 2: local Hardhat node
@@ -78,7 +78,7 @@ Then at http://localhost:3000, use the mode toggle in the nav to switch between 
 | C · Guided experience | 🟡 Architected, not yet implemented (Tour, Explainer, Glossary, Concepts page) |
 | D · Visual design | 🟢 System in place (Fraunces + Plex + JetBrains Mono, ochre/navy/paper palette), polish iteration pending |
 
-Remaining work is tracked in `HANDOFF.md` — a two-phase playbook: Claude Design for visual exploration on the narrative pages + concept prototypes, then Claude Code for implementation, testing, and deployment.
+Remaining work is tracked in `HANDOFF.md`, a two-phase playbook: Claude Design for visual exploration on the narrative pages + concept prototypes, then Claude Code for implementation, testing, and deployment.
 
 ---
 
@@ -109,6 +109,6 @@ In `frontend/`:
 
 ## Credits
 
-- Original project (v1): Vaishnav Ajai, Rohit B.V., Akash N. — IT465 at NITK Surathkal (2021)
+- Original project (v1): Vaishnav Ajai, Rohit B.V., Akash N., for IT465 Blockchain Technologies at NITK Surathkal (2021). Vaishnav wrote the loan contract.
 - Original advisor: Dr. Bhawana Rudra
-- v3 rebuild: 2026
+- v3 rebuild: Vaishnav Ajai, 2026

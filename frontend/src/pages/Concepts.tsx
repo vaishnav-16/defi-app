@@ -19,7 +19,7 @@ export default function Concepts() {
         <p className="font-display text-[20px] leading-[1.5] text-ink-500 max-w-[36rem] animate-rise-in [animation-delay:240ms]">
           The DeFi app uses three ideas that are easier to feel than to read
           about. Drag the sliders. Watch what happens. Each widget is the same
-          math the live app runs — just paused, controllable, and unhurried.
+          math the live app runs, just paused, controllable and unhurried.
         </p>
       </header>
 
@@ -40,7 +40,7 @@ export default function Concepts() {
           </h2>
           <p className="font-display text-[18px] leading-[1.5] text-ink-500 max-w-[36rem] mb-12">
             Everything you just dragged runs identically on Sepolia. One click
-            to switch from demo to testnet — no install, no faucet required.
+            to switch from demo to testnet. No install, no faucet required.
           </p>
           <Link
             to="/app"
@@ -156,7 +156,7 @@ function RewardAccrualWidget() {
             {formatEther(reward).slice(0, 8)} DAPP
           </p>
           <p className="text-xs text-ink-500 mt-2 font-mono">
-            Computed by calling <code>engine.earned()</code> — the same
+            Computed by calling <code>engine.earned()</code>, the same
             function the live app uses.
           </p>
         </div>
@@ -288,7 +288,7 @@ function PoolSplitWidget() {
         </div>
 
         <p className="text-xs text-ink-500 font-mono">
-          Computed by calling <code>engine.rewardPerToken()</code> — same
+          Computed by calling <code>engine.rewardPerToken()</code>, the same
           function the live app uses.
         </p>
       </div>
@@ -322,7 +322,7 @@ function LiquidationWidget() {
           That's the whole over-collateralization mechanism. The borrower has
           an incentive to repay because the <Term>collateral</Term> is worth
           more than the loan. The lender has an incentive to wait because they
-          earn a fee on repayment — and a backstop if the borrower vanishes:{" "}
+          earn a fee on repayment, and they have a backstop if the borrower vanishes:{" "}
           <Term>liquidation</Term>.
         </p>
       </header>
