@@ -133,7 +133,7 @@ export function useStakingActions(): StakingActions {
     try {
       const h = await writeContractAsync(params);
       setHash(h);
-      toast(`${label} submitted — waiting for confirmation`);
+      toast(`${label} submitted, waiting for confirmation`);
     } catch (err) {
       const msg = err instanceof Error ? err.message.split("\n")[0] : "Transaction failed";
       toast.error(msg);
