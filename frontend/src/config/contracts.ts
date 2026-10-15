@@ -6,7 +6,8 @@ import { type Address } from "viem";
  * nonce sequence on every fresh node — these defaults match `scripts/deploy.ts`
  * against a freshly-started `hardhat node`.
  *
- * For live testnets (Sepolia), set via .env after running deploy:
+ * Sepolia defaults are the live deployment (contracts/deployments/sepolia.json,
+ * verified on Sourcify). Override per environment after a redeploy:
  *   VITE_SEPOLIA_DAI=0x...
  *   VITE_SEPOLIA_DAPP=0x...
  *   VITE_SEPOLIA_FARM=0x...
@@ -29,10 +30,10 @@ const LOCAL: ContractSet = {
 };
 
 const SEPOLIA: ContractSet = {
-  dai: (import.meta.env.VITE_SEPOLIA_DAI ?? "0x0000000000000000000000000000000000000000") as Address,
-  dapp: (import.meta.env.VITE_SEPOLIA_DAPP ?? "0x0000000000000000000000000000000000000000") as Address,
-  farm: (import.meta.env.VITE_SEPOLIA_FARM ?? "0x0000000000000000000000000000000000000000") as Address,
-  loan: (import.meta.env.VITE_SEPOLIA_LOAN ?? "0x0000000000000000000000000000000000000000") as Address,
+  dai: (import.meta.env.VITE_SEPOLIA_DAI ?? "0xfc62088332c78516744eA92c493d1B3cFdCB39cF") as Address,
+  dapp: (import.meta.env.VITE_SEPOLIA_DAPP ?? "0x9641F1EEE808DBa86Aa1571b38645e619516CFc1") as Address,
+  farm: (import.meta.env.VITE_SEPOLIA_FARM ?? "0x983Cf8095b7018B57d41750EeBd4A6AE5eae0422") as Address,
+  loan: (import.meta.env.VITE_SEPOLIA_LOAN ?? "0x297aBd7036d37DCa41e1b25a93cdA15441884A19") as Address,
 };
 
 export const ADDRESSES: Record<number, ContractSet> = {

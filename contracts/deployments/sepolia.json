@@ -1,0 +1,10 @@
+{
+  "network": "sepolia",
+  "chainId": 11155111,
+  "DaiToken": "0xfc62088332c78516744eA92c493d1B3cFdCB39cF",
+  "DappToken": "0x9641F1EEE808DBa86Aa1571b38645e619516CFc1",
+  "TokenFarm": "0x983Cf8095b7018B57d41750EeBd4A6AE5eae0422",
+  "LoanBook": "0x297aBd7036d37DCa41e1b25a93cdA15441884A19",
+  "deployer": "0x701734e84f6d4B1Ea819B5eFB4b9dB9f06629918",
+  "timestamp": "2026-10-15T01:25:24.865Z"
+}
