@@ -3,6 +3,7 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useSyncExternalStore } from "react";
 import { useAppMode, useSetAppMode } from "@/lib/mode";
 import { getDemoClock } from "@/demo/clock";
+import FaucetButton from "./FaucetButton";
 import Tour from "./Tour";
 import Explainer from "./Explainer";
 
@@ -60,6 +61,7 @@ export default function AppLayout() {
           <div className="flex items-center gap-3">
             {mode === "demo" && <DemoClockBadge />}
             <ModeToggle mode={mode} setMode={setMode} />
+            {mode === "sepolia" && <FaucetButton />}
             {mode === "sepolia" && (
               <ConnectButton
                 accountStatus={{ smallScreen: "avatar", largeScreen: "full" }}

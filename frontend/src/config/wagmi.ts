@@ -20,7 +20,7 @@ export const wagmiConfig = getDefaultConfig({
   transports: {
     [hardhat.id]: http("http://127.0.0.1:8545"),
     [sepolia.id]: http(
-      import.meta.env.VITE_SEPOLIA_RPC_URL ?? "https://rpc.sepolia.org"
+      import.meta.env.VITE_SEPOLIA_RPC_URL ?? "https://ethereum-sepolia-rpc.publicnode.com"
     ),
   },
   ssr: false,

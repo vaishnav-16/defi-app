@@ -52,4 +52,11 @@ export const daiTokenAbi = [
     inputs: [],
     outputs: [{ type: "string" }],
   },
+  {
+    type: "function",
+    name: "faucet",
+    stateMutability: "nonpayable",
+    inputs: [],
+    outputs: [],
+  },
 ] as const;
