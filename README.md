@@ -118,6 +118,6 @@ In `frontend/`:
 
 ## Credits
 
-- Original project (v1): Vaishnav Ajai, Rohit B.V., Akash N., for IT465 Blockchain Technologies at NITK Surathkal (2021). Vaishnav wrote the loan contract.
+- Original project (v1): built by Vaishnav Ajai for IT465 Blockchain Technologies at NITK Surathkal (2021) (course team: Vaishnav Ajai, Rohit B.V., Akash N.)
 - Original advisor: Dr. Bhawana Rudra
 - v3 rebuild: Vaishnav Ajai, 2026

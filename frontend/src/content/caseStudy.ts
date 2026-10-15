@@ -45,7 +45,7 @@ export const problem: Section = {
   blocks: [
     {
       kind: "prose",
-      text: "The v1 was a working token-farming, payments and lending dApp that three of us built for IT465 Blockchain Technologies at NITK Surathkal in 2021 (I wrote the loan contract). The Solidity was correct, the React frontend worked, the tests passed. But the path from 'I want to see this' to 'I have interacted with it' looked like this:",
+      text: "The v1 was a working token-farming, payments and lending dApp I built for IT465 Blockchain Technologies at NITK Surathkal in 2021. The Solidity was correct, the React frontend worked, the tests passed. But the path from 'I want to see this' to 'I have interacted with it' looked like this:",
     },
     {
       kind: "list",
