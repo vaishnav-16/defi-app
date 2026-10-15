@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
 import type { Address } from "viem";
-import { parseEther } from "viem";
 import {
   useAccount,
   useChainId,
@@ -13,7 +12,7 @@ import toast from "react-hot-toast";
 
 import { useAppMode } from "./mode";
 import { useDemoState, getDemoStore, DemoError } from "@/demo/store";
-import { DEMO_ADDRESSES, DemoLoanState, type DemoLoan } from "@/demo/types";
+import { DEMO_ADDRESSES, type DemoLoan } from "@/demo/types";
 import { loanBookAbi } from "@/abis/loanBook";
 import { daiTokenAbi } from "@/abis/daiToken";
 import { getAddresses } from "@/config/contracts";
@@ -81,7 +80,14 @@ export function useLoansView(): LoansView {
 
   const loans: UnifiedLoan[] = (wagmiLoans ?? []).map((raw, i) => {
     const arr = raw as unknown as readonly [
-      Address, Address, bigint, bigint, bigint, bigint, bigint, number,
+      Address,
+      Address,
+      bigint,
+      bigint,
+      bigint,
+      bigint,
+      bigint,
+      number
     ];
     return {
       id: ids[i],
@@ -149,10 +155,11 @@ export function useLoanActions(): LoanActions {
     }
   };
 
-  const runWagmi = async (label: string, params: Parameters<typeof writeContractAsync>[0]) => {
+  // Takes a thunk so each call site infers its own ABI function (takeLoan is payable).
+  const runWagmi = async (label: string, send: () => Promise<`0x${string}`>) => {
     setPending(label);
     try {
-      const h = await writeContractAsync(params);
+      const h = await send();
       setHash(h);
       toast(`${label} submitted`);
     } catch (err) {
@@ -167,61 +174,71 @@ export function useLoanActions(): LoanActions {
         return runDemo("Offer loan", () =>
           getDemoStore().offerLoan(loanAmount, feeAmount, collateralAmount, duration)
         );
-      return runWagmi("Offer loan", {
-        address: addrs.loan,
-        abi: loanBookAbi,
-        functionName: "offerLoan",
-        args: [loanAmount, feeAmount, collateralAmount, duration],
-      });
+      return runWagmi("Offer loan", () =>
+        writeContractAsync({
+          address: addrs.loan,
+          abi: loanBookAbi,
+          functionName: "offerLoan",
+          args: [loanAmount, feeAmount, collateralAmount, duration],
+        })
+      );
     },
     cancel: async (loanId) => {
-      if (mode === "demo")
-        return runDemo("Cancel offer", () => getDemoStore().cancelOffer(loanId));
-      return runWagmi("Cancel offer", {
-        address: addrs.loan,
-        abi: loanBookAbi,
-        functionName: "cancelOffer",
-        args: [loanId],
-      });
+      if (mode === "demo") return runDemo("Cancel offer", () => getDemoStore().cancelOffer(loanId));
+      return runWagmi("Cancel offer", () =>
+        writeContractAsync({
+          address: addrs.loan,
+          abi: loanBookAbi,
+          functionName: "cancelOffer",
+          args: [loanId],
+        })
+      );
     },
     take: async (loanId, collateral) => {
       if (mode === "demo")
         return runDemo("Take loan", () => getDemoStore().takeLoan(loanId, collateral));
-      return runWagmi("Take loan", {
-        address: addrs.loan,
-        abi: loanBookAbi,
-        functionName: "takeLoan",
-        args: [loanId],
-        value: collateral,
-      });
+      return runWagmi("Take loan", () =>
+        writeContractAsync({
+          address: addrs.loan,
+          abi: loanBookAbi,
+          functionName: "takeLoan",
+          args: [loanId],
+          value: collateral,
+        })
+      );
     },
     repay: async (loanId) => {
       if (mode === "demo") return runDemo("Repay", () => getDemoStore().repay(loanId));
-      return runWagmi("Repay", {
-        address: addrs.loan,
-        abi: loanBookAbi,
-        functionName: "repay",
-        args: [loanId],
-      });
+      return runWagmi("Repay", () =>
+        writeContractAsync({
+          address: addrs.loan,
+          abi: loanBookAbi,
+          functionName: "repay",
+          args: [loanId],
+        })
+      );
     },
     liquidate: async (loanId) => {
-      if (mode === "demo")
-        return runDemo("Liquidate", () => getDemoStore().liquidate(loanId));
-      return runWagmi("Liquidate", {
-        address: addrs.loan,
-        abi: loanBookAbi,
-        functionName: "liquidate",
-        args: [loanId],
-      });
+      if (mode === "demo") return runDemo("Liquidate", () => getDemoStore().liquidate(loanId));
+      return runWagmi("Liquidate", () =>
+        writeContractAsync({
+          address: addrs.loan,
+          abi: loanBookAbi,
+          functionName: "liquidate",
+          args: [loanId],
+        })
+      );
     },
     approve: async (amount) => {
       if (mode === "demo") return;
-      return runWagmi("Approve", {
-        address: addrs.dai,
-        abi: daiTokenAbi,
-        functionName: "approve",
-        args: [addrs.loan, amount],
-      });
+      return runWagmi("Approve", () =>
+        writeContractAsync({
+          address: addrs.dai,
+          abi: daiTokenAbi,
+          functionName: "approve",
+          args: [addrs.loan, amount],
+        })
+      );
     },
     pending: pending ?? (isMining ? "Confirming" : null),
   };
@@ -248,7 +265,7 @@ export function useTransferView() {
   });
 
   return {
-    balance: mode === "demo" ? demoBalance : ((wagmiBalance as bigint | undefined) ?? 0n),
+    balance: mode === "demo" ? demoBalance : (wagmiBalance as bigint | undefined) ?? 0n,
     userAddress: mode === "demo" ? DEMO_ADDRESSES.user : wallet,
   };
 }
@@ -303,9 +320,6 @@ export function useTransferActions() {
 
   // Random demo address for "send to Alice" shortcut.
   const demoRecipient = "0x00000000000000000000000000000000000000Ca" as Address;
-
-  // Parse parity: let the frontend synthesize valid demo recipients.
-  const _ = parseEther; // prevent tree-shaking of unused import
 
   return { send, pending: pending ?? (isMining ? "Confirming" : null), demoRecipient };
 }

@@ -23,6 +23,17 @@ import { DemoLoanState, DEMO_ADDRESSES, type DemoState } from "./types";
  * accounting changes.
  */
 
+/** The demo engine throws DemoError with a code named after the contract's custom error. */
+function expectCode(fn: () => unknown, code: string) {
+  try {
+    fn();
+  } catch (e) {
+    expect((e as { code?: string }).code).toBe(code);
+    return;
+  }
+  throw new Error(`expected ${code} to be thrown`);
+}
+
 const { user, alice, book, farm } = DEMO_ADDRESSES;
 const ONE_DAY = 24n * 60n * 60n;
 const INITIAL_TIME = 1_700_000_000n;
@@ -167,13 +178,13 @@ describe("LoanBook state machine", () => {
 
   it("non-lender cannot cancel", () => {
     const s = offer(state).state;
-    expect(() => doCancelOffer(s, alice, 0n, INITIAL_TIME)).toThrow(/NotLender/);
+    expectCode(() => doCancelOffer(s, alice, 0n, INITIAL_TIME), "NotLender");
   });
 
   it("takeLoan transfers principal and locks collateral", () => {
     let s = offer(state).state;
     s = doTakeLoan(s, alice, 0n, parseEther("1"), INITIAL_TIME).state;
-    expect(s.daiBalances[alice]).toBe(parseEther("100")); // received principal
+    expect(s.daiBalances[alice]).toBe(parseEther("600")); // 500 seed + 100 principal
     expect(s.ethBalances[alice]).toBe(parseEther("4")); // collateral deducted
     expect(s.ethBalances[book]).toBe(parseEther("1"));
     expect(s.loans[0]!.state).toBe(DemoLoanState.Taken);
@@ -182,9 +193,7 @@ describe("LoanBook state machine", () => {
 
   it("takeLoan rejects wrong collateral amount", () => {
     const s = offer(state).state;
-    expect(() => doTakeLoan(s, alice, 0n, parseEther("0.5"), INITIAL_TIME)).toThrow(
-      /WrongCollateral/
-    );
+    expectCode(() => doTakeLoan(s, alice, 0n, parseEther("0.5"), INITIAL_TIME), "WrongCollateral");
   });
 
   it("repay settles principal + fee and returns ETH", () => {
@@ -193,9 +202,9 @@ describe("LoanBook state machine", () => {
     s = doRepay(s, alice, 0n, INITIAL_TIME + ONE_DAY).state;
 
     // Lender received principal + fee.
-    expect(s.daiBalances[user]).toBe(parseEther("905"));
-    // Borrower paid principal+fee from their mDAI (started at 100 principal - 5 fee = 95).
-    expect(s.daiBalances[alice]).toBe(parseEther("-5"));
+    expect(s.daiBalances[user]).toBe(parseEther("1005"));
+    // Borrower paid principal + fee: 500 seed + 100 principal - 105 = 495.
+    expect(s.daiBalances[alice]).toBe(parseEther("495"));
     // Collateral returned.
     expect(s.ethBalances[alice]).toBe(parseEther("5"));
     expect(s.loans[0]!.state).toBe(DemoLoanState.Repaid);
@@ -205,7 +214,7 @@ describe("LoanBook state machine", () => {
     let s = offer(state).state;
     s = doTakeLoan(s, alice, 0n, parseEther("1"), INITIAL_TIME).state;
 
-    expect(() => doLiquidate(s, user, 0n, INITIAL_TIME + ONE_DAY)).toThrow(/DeadlineNotPassed/);
+    expectCode(() => doLiquidate(s, user, 0n, INITIAL_TIME + ONE_DAY), "DeadlineNotPassed");
 
     const afterDeadline = INITIAL_TIME + 8n * ONE_DAY;
     const { state: liquidated } = doLiquidate(s, user, 0n, afterDeadline);
@@ -216,6 +225,6 @@ describe("LoanBook state machine", () => {
   it("non-lender cannot liquidate", () => {
     let s = offer(state).state;
     s = doTakeLoan(s, alice, 0n, parseEther("1"), INITIAL_TIME).state;
-    expect(() => doLiquidate(s, alice, 0n, INITIAL_TIME + 8n * ONE_DAY)).toThrow(/NotLender/);
+    expectCode(() => doLiquidate(s, alice, 0n, INITIAL_TIME + 8n * ONE_DAY), "NotLender");
   });
 });
