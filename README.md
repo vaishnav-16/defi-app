@@ -1,6 +1,6 @@
 # DeFi App v3: Portfolio Edition
 
-A PM portfolio case study on product-led design for decentralized finance. A from-scratch rebuild of a 2021 blockchain-course project ([v1 repo](https://github.com/vaishnav-16/defi-app)), rethought for the audience it never had: people who don't already own crypto.
+A PM portfolio case study on product-led design for decentralized finance. A from-scratch rebuild of a 2021 blockchain-course project ([the 2021 code](https://github.com/vaishnav-16/defi-app/tree/v1-2021), tagged `v1-2021`), rethought for the audience it never had: people who don't already own crypto.
 
 **Live demo:** https://defi-legible.vercel.app (demo mode needs no wallet; switch to Sepolia to use the real contracts, and grab test mDAI from the header faucet)
 
