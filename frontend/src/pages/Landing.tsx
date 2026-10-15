@@ -108,8 +108,8 @@ export default function Landing() {
                 footnote="Custom errors replace require-strings, arithmetic is checked by default, and immutables save gas." />
           <Stat n="03" label="Reward model" before="Manual" after="Continuous" note="Time-weighted accrual" text
                 footnote="v1 paid rewards only when the owner ran a payout script that looped over every staker. Now rewards accrue every second, with no loop." />
-          <Stat n="04" label="Test coverage" before="5" after="52" note="Automated tests"
-                footnote="35 Solidity tests in Hardhat plus 17 simulation tests in vitest. Covers staking math, the lending state machine and deadline boundaries." />
+          <Stat n="04" label="Test coverage" before="5" after="56" note="Automated tests"
+                footnote="39 Solidity tests in Hardhat plus 17 simulation tests in vitest. Covers staking math, the lending state machine, deadline boundaries and the testnet faucet." />
         </div>
       </section>
 
