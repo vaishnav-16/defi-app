@@ -27,7 +27,7 @@ This is simultaneously a **working DeFi app** and a **PM portfolio case study**.
 The story-telling surface. Pages:
 
 - `/` — **Landing.** Not a connect-wallet wall. A framed problem, a clear value prop, one big "Try the demo" button.
-- `/case-study` — **About.** The PM writeup: problem, research, design decisions, tradeoffs, metrics, roadmap. Structured like Linear's "Method" articles.
+- `/case-study` — **About.** The PM writeup: problem, diagnosis, design decisions, tradeoffs, metrics, roadmap. Structured like Linear's "Method" articles.
 - `/concepts` — **DeFi primer.** Interactive explainers of staking, collateral, liquidation. Not text — mini-demos.
 - `/roadmap` — What's shipping next, what's explicitly out-of-scope, why.
 
@@ -97,7 +97,7 @@ The About page is broken into typed sections so it's trivial to reorder or A/B t
 content/case-study/
 ├── hero.ts         // title, subtitle, TL;DR
 ├── problem.ts      // what was wrong with v1
-├── research.ts     // fictional (but defensible) user research
+├── diagnosis.ts    // what was wrong with v1
 ├── decisions.ts    // design decisions with tradeoff tables
 ├── metrics.ts      // what success looks like
 ├── roadmap.ts      // what's next
